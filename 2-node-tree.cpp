@@ -46,13 +46,31 @@ bool addnode(Btree head, int elem)
     tmp->rchild = child,tmp->rnum++;
     return true;
 }
-void xh(Btree head)
+void PreOder(Btree head)
 {
     cout<<head->elem<<' ';
     if(head->lchild != NULL)
-    xh(head->lchild);
+    PreOder(head->lchild);
     if(head->rchild != NULL)
-    xh(head->rchild);
+    PreOder(head->rchild);
+    return;
+}
+void InOder(Btree head)
+{
+    if(head->lchild != NULL)
+    InOder(head->lchild);
+    cout<<head->elem<<' ';
+    if(head->rchild != NULL)
+    InOder(head->rchild);
+    return;
+}
+void PostOder(Btree head)
+{
+    if(head->lchild != NULL)
+    PostOder(head->lchild);
+    if(head->rchild != NULL)
+    PostOder(head->rchild);
+    cout<<head->elem<<' ';
     return;
 }
 void droptree(Btree head)
@@ -75,13 +93,22 @@ int main()
 {  
     Btree head = new Node;
     inittree(head);
-    int i,tmp;
-    for(i = 0; i < 7; i++)
+    int i,tmp,n ;
+    cin>>n;
+    for(i = 0; i < n; i++)
     {
         cin>>tmp;
         addnode(head,tmp);
     }
-    xh(head);
+    cout<<"该完全二叉树的先序遍历为："<<endl;
+    PreOder(head);
+    cout<<endl;
+    cout<<"该完全二叉树的中序遍历为："<<endl;
+    InOder(head);
+    cout<<endl;
+    cout<<"该完全二叉树的后序遍历为："<<endl;
+    PostOder(head);
+    cout<<endl;
     droptree(head);
     return 0;
 }
