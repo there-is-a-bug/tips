@@ -22,6 +22,14 @@ void d(Btree &n,int i)
         d(n->lchild,i);
     }
 }
+bool init_move(int move[])
+{
+    for(int i = 0; i < 10; i++)
+    {
+        move[i] = i;
+    }
+    return true;
+}
 int main()
 {
     Btree head = new Node;
@@ -30,5 +38,9 @@ int main()
     head->lchild->elem = 2;
     d(head,0);
     cout<<head->lchild->elem;
+    int move[100];
+    init_move(move);
+    for(int i = 0; i < 10; i++)
+    cout<<move[i];
     return 0;
 }
